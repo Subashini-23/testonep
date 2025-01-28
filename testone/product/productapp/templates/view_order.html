@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Order</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h2>Order Details</h2>
+    <p><strong>Order ID:</strong> {{ order.orderId }}</p>
+    <p><strong>Order Date:</strong> {{ order.orderDate }}</p>
+    <p><strong>Contact Person:</strong> {{ order.contactPerson }}</p>
+    <p><strong>Delivery Address:</strong> {{ order.deliveryAddress }}</p>
+    <p><strong>Status:</strong> {{ order.status }}</p>
+    <p><strong>Total:</strong> ₹{{ order.total }}</p>
+
+    <h3>Products</h3>
+    <table>
+        <tr>
+            <th>S.NO</th>
+            <th>Product Name</th>
+            <th>Category</th>
+            <th>Unit</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total Amount</th>
+        </tr>
+        {% for item in order_items %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ item.product.productName }}</td>
+            <td>{{ item.product.category }}</td>
+            <td>{{ item.product.unit }}</td>
+            <td>{{ item.product.price }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.total_amount }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
